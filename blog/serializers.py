@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class EntrySerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='User.username')
+    author = serializers.ReadOnlyField(source='author.username')
 
     class Meta:
         model = Entry
@@ -21,7 +21,7 @@ class EntrySerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='User.username')
+    author = serializers.ReadOnlyField(source='author.username')
 
     class Meta:
         model = Comments
@@ -29,7 +29,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='User.username')
+    author = serializers.ReadOnlyField(source='author.username')
     entries = EntrySerializer(many=True, read_only=True)
     liked_post = UserSerializer(many=True, read_only=True)
 
